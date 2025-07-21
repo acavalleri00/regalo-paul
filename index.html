@@ -17,12 +17,12 @@
         transform: translateY(0);
       }
       .dropzone {
-        min-width: 40px;
-        min-height: 50px;
+        min-width: 30px;
+        min-height: 40px;
         border-bottom: 2px dashed #333;
         display: inline-block;
         margin: 0 5px;
-        font-size: 2rem;
+        font-size: 1.5rem;
         text-align: center;
         line-height: 50px;
       }
@@ -180,6 +180,7 @@
     </div>
 
     <div id="fakeResult" class="big-message hidden">
+        <audio id="failSound" src="./audio.mp3"></audio>
       <span>❌ SBAGLIATO</span>
       <img src="./photo4.jpg" class="rounded-xl shadow-xl mt-5 mb-5 mx-auto w-1/2 h-1/2" />
       la parola era <span class="underline">PASSEGGERO</span>!
@@ -226,9 +227,10 @@
             zone.classList.add('text-blue-800', 'font-bold');
             correct++;
             if (correct >= 3) {
-              fakeResult.classList.remove('hidden');
+                document.getElementById('failSound').play();
+                fakeResult.classList.remove('hidden');
               setTimeout(() => {
-                fakeResult.classList.add('hidden');
+                fakeResult.classList.add('hidden');                
                 document.getElementById('partecipanti').classList.remove('hidden');
                 document.getElementById('partecipanti').scrollIntoView({ behavior: 'smooth' });
               }, 3000);

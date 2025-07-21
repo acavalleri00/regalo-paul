@@ -142,6 +142,27 @@
         </div>
       </div>
     </section>
+
+    <section id="partecipanti" class="hidden px-5 min-h-screen flex flex-col items-center justify-center text-center bg-white">
+        <h2 class="text-3xl font-bold text-blue-800 mb-6">I partecipanti:</h2>
+        <ul class="text-lg text-blue-700 space-y-2 mb-10">
+            <li>Fabio</li>
+            <li>Cava</li>
+            <li>Lorenzo</li>
+            <li>Gorle (Filippo)</li>
+            <li>Gorle (Andrea)</li>
+            <li>Faude</li>
+            <li>Lia</li>
+            <li>Rachele</li>
+            <li>Tetto</li>
+            <li>Davide</li>
+            <li>Davide</li>
+            <li>Matteo</li>
+        </ul>
+        <button id="mostraCoupon" class="bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition">
+            Scopri 🎁
+        </button>
+    </section>
     
     <section id="coupon" class="px-5 min-h-screen bg-[url(./coupon.jpg)] bg-center bg-contain bg-no-repeat py-32 px-6 hidden">
 
@@ -203,8 +224,8 @@
               fakeResult.classList.remove('hidden');
               setTimeout(() => {
                 fakeResult.classList.add('hidden');
-                document.getElementById('coupon').classList.remove('hidden');
-                document.getElementById('coupon').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('partecipanti').classList.remove('hidden');
+                document.getElementById('partecipanti').scrollIntoView({ behavior: 'smooth' });
               }, 3000);
             }
           } else {
@@ -215,6 +236,12 @@
           }
         });
       });
+
+      document.getElementById('mostraCoupon').addEventListener('click', () => {
+        document.getElementById('coupon').classList.remove('hidden');
+        document.getElementById('coupon').scrollIntoView({ behavior: 'smooth' });
+    });
+
     </script>
   </body>
 </html>

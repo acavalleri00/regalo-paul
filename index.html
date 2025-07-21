@@ -49,6 +49,22 @@
         font-weight: bold;
         animation: fadeIn 0.3s ease-out;
       }
+    .big-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.95);
+        color: #dc2626;
+        padding: 2rem;
+        border: 4px solid #dc2626;
+        border-radius: 16px;
+        font-size: 2rem;
+        font-weight: bold;
+        z-index: 50;
+        text-align: center;
+        max-width: 90%;
+      }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(10px); }
@@ -139,6 +155,10 @@
       <div id="alertMessage" class="custom-alert">Sei senza speranza... ✖️</div>
     </div>
 
+    <div id="fakeResult" class="big-message hidden">
+      ❌ SBAGLIATO, la parola era <span class="underline">PASSEGGERO</span>!
+    </div>
+
     <script>
          const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -160,6 +180,8 @@
         "Dillo che lo fai apposta...",
       ];
 
+      
+      const fakeResult = document.getElementById('fakeResult');
       let correct = 0;
 
       draggables.forEach(el => {
@@ -178,8 +200,12 @@
             zone.classList.add('text-blue-800', 'font-bold');
             correct++;
             if (correct >= 3) {
-              document.getElementById('coupon').classList.remove('hidden');
-              document.getElementById('coupon').scrollIntoView({ behavior: 'smooth' });
+              fakeResult.classList.remove('hidden');
+              setTimeout(() => {
+                fakeResult.classList.add('hidden');
+                document.getElementById('coupon').classList.remove('hidden');
+                document.getElementById('coupon').scrollIntoView({ behavior: 'smooth' });
+              }, 3000);
             }
           } else {
             const randomMsg = alertMessages[Math.floor(Math.random() * alertMessages.length)];
